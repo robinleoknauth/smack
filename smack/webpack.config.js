@@ -5,7 +5,8 @@ module.exports = {
  entry: "./frontend/smack.jsx",
  output: {
    path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
-   filename: 'bundler.js'   // webpack would not install bundle.js -> thus i manually created the file bundler
+   filename: 'bundle.js'   // webpack would not install bundle.js -> thus i manually created the file bundler
+   // named it back to bundle.js because apperently there now is a bundle.js
  },
  resolve: {
    extensions: ['.js', '.jsx', '*']
