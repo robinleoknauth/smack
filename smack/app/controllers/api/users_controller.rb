@@ -1,38 +1,19 @@
 class Api::UsersController < ApplicationController
 
-  validates :password, length: { minimum: 6, allow_nil: true }
-  validates :password_digest, :username, presence: true
-
-  attr_reader :password
-
-  has_many :comments
-  has_many :links
-
-  after_initialize :ensure_session_token
-
-  def password=(password)
-    @password = password
-    self.password_digest = BCrypt::Password.create(password)
+  def create
+    @user = User.new(user_params)
+    # debugger
+    if @user.save
+      login(@user)
+      render "api/users/show"
+    else
+      render json: @user.errors.full_messages    , status: 401
+    end
   end
 
-  def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
+  private
+
+  def user_params
+    params.require(:user).permit(:username, :password)
   end
-
-  def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
-    user && user.is_password?(password) ? user : nil
-  end
-
-  def reset_token
-    self.session_token = SecureRandom.urlsafe_base64(16)
-    self.save
-    self.session_token
-
-  end
-
-  def ensure_session_token
-    self.session_token ||= SecureRandom.urlsafe_base64(16)
-  end
-
 end

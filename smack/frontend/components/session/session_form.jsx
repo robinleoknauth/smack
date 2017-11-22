@@ -30,38 +30,41 @@ class SessionForm extends React.Component {
     this.props.processForm({user});
   }
 
-  navLink() {
+  navigationLink() {
     if (this.props.formType === 'login') {
-      return <Link to="/signup">sign up instead</Link>;
+      return <Link to="/signup">sign up</Link>;
     } else {
-      return <Link to="/login">log in instead</Link>;
+      return <Link to="/login">log in</Link>;
     }
   }
-
-  renderErrors() {
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  //
+  // renderErrors() {
+  //   return(
+  //     <ul>
+  //       {this.props.errors.map((error, i) => (
+  //         <li key={`error-${i}`}>
+  //           {error}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 
   render() {
+    console.log(this.props);
     return (
       <div className="login-form-container">
+        
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to SMACK!
+          Welcome to !SMACK!
           <br/>
-          Please {this.props.formType} or {this.navLink()}
-          {this.renderErrors()}
+          {this.props.formType} or {this.navigationLink()}
+
           <div className="login-form">
             <br/>
             <label>Username:
               <input type="text"
+
                 value={this.state.username}
                 onChange={this.update('username')}
                 className="login-input"
@@ -70,6 +73,7 @@ class SessionForm extends React.Component {
             <br/>
             <label>Password:
               <input type="password"
+
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="login-input"
@@ -79,6 +83,7 @@ class SessionForm extends React.Component {
             <input type="submit" value="Submit" />
           </div>
         </form>
+
       </div>
     );
   }
