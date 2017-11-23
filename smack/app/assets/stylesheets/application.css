@@ -74,7 +74,7 @@ input[type="submit"] {
 }
 
 .login-form-base{
-  background-color: #f9f9f9
+  background-color: #f9f9f9;
   color: black;
   display: flex;
   flex-direction: column;
