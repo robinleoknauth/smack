@@ -65,7 +65,7 @@ class SessionForm extends React.Component {
             <h1>Welcome to !SMACK!</h1>
             <p> Enter your username and password please. </p>
             <p> This is the  {this.props.formType} page </p>
-            <p>   Not yet registered? Go to {this.navigationLink()} </p>
+            <p> Go to {this.navigationLink()} </p>
 
             <label>Username:
               <input type="text"
@@ -76,7 +76,7 @@ class SessionForm extends React.Component {
               />
             </label>
 
-            <label>Password:
+            <label>Password:   
               <input type="password"
 
                 value={this.state.password}

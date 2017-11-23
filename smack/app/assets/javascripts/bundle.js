@@ -29202,7 +29202,7 @@ var SessionForm = function (_React$Component) {
             _react2.default.createElement(
               'p',
               null,
-              '   Not yet registered? Go to ',
+              ' Go to ',
               this.navigationLink(),
               ' '
             ),
