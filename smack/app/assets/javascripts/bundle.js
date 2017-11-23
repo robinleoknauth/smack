@@ -29005,6 +29005,10 @@ var _session_form_container = __webpack_require__(277);
 
 var _session_form_container2 = _interopRequireDefault(_session_form_container);
 
+var _navbar_container = __webpack_require__(280);
+
+var _navbar_container2 = _interopRequireDefault(_navbar_container);
+
 var _route_util = __webpack_require__(279);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29014,6 +29018,7 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _navbar_container2.default }),
     _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
     _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default })
   );
@@ -29229,7 +29234,7 @@ var SessionForm = function (_React$Component) {
               })
             ),
             _react2.default.createElement('br', null),
-            _react2.default.createElement('input', { type: 'submit', value: 'Submit', className: 'login-button' })
+            _react2.default.createElement('input', { type: 'submit', value: 'Continue \u2192', className: 'login-button' })
           )
         )
       );
@@ -29288,6 +29293,167 @@ var mapStateToProps = function mapStateToProps(state) {
 var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
 
 var ProtectedRoute = exports.ProtectedRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Protected));
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(62);
+
+var _session_actions = __webpack_require__(61);
+
+var _header_dropdown = __webpack_require__(281);
+
+var _header_dropdown2 = _interopRequireDefault(_header_dropdown);
+
+var _navbar_component = __webpack_require__(282);
+
+var _navbar_component2 = _interopRequireDefault(_navbar_component);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch((0, _session_actions.logout)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_navbar_component2.default);
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Dropdown = function Dropdown(_ref) {
+  var logout = _ref.logout,
+      currentUser = _ref.currentUser;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'dropdown' },
+    _react2.default.createElement(
+      'ul',
+      null,
+      _react2.default.createElement(
+        'li',
+        { className: 'dropdown-user' },
+        'Username: ',
+        currentUser.username
+      ),
+      _react2.default.createElement(
+        'li',
+        { className: 'dropdown-logout' },
+        _react2.default.createElement(
+          'div',
+          { onClick: logout },
+          'Sign Out'
+        )
+      )
+    )
+  );
+};
+
+exports.default = Dropdown;
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(38);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var currentUser = _ref.currentUser,
+      logout = _ref.logout;
+
+  var display = currentUser ? _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'p',
+      { className: 'welcome-message' },
+      'Welcome ',
+      currentUser.displayname
+    ),
+    _react2.default.createElement(
+      'a',
+      { className: 'button', onClick: logout },
+      'Log Out'
+    )
+  ) : _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { className: 'button', to: '/signup' },
+      'Sign up'
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { className: 'button', to: '/login' },
+      'Log in'
+    )
+  );
+
+  return _react2.default.createElement(
+    'header',
+    { className: 'nav-bar' },
+    _react2.default.createElement(
+      'h2',
+      { className: 'logo' },
+      '!SMACK!'
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      display
+    )
+  );
+};
 
 /***/ })
 /******/ ]);

@@ -88,7 +88,7 @@ input[type="submit"] {
 }
 
 .login-form {
-  /*color: blue;*/
+
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -145,7 +145,7 @@ input[type="submit"] {
   line-height: normal;
   margin: 2px 2px 2px 2px;
   padding: .75rem;
-  border: 1px solid #a0a0a2
+  border: 1px solid #a0a0a2;
 }
 
 .login-button {
@@ -165,5 +165,38 @@ input[type="submit"] {
 }
 
 .login-button:hover {
-    box-shadow: inset 0 -2px rgba(0,0,0,.25);
+  box-shadow: inset 0 -2px rgba(0,0,0,.25);
+}
+
+.button  {
+  display: inline-block;
+  position: relative;
+  border: 1px solid #a0a0a2;
+  border-radius: 4px;
+  float: right;
+  text-align: center;
+  top: 20px;
+  height: 20px;
+  width: 52px;
+  padding:  5px 10px 5px 10px;
+  margin: 5px;
+  background-color: white;
+  font-size: 14px;
+  text-decoration: none;
+  color: #717274;
+  box-shadow: 0 0 0 0.5px #717274;
+}
+
+
+
+.button:hover {
+  cursor: pointer;
+  box-shadow: inset 0 -2px rgba(0,0,0,.25);
+}
+
+.welcome-message {
+  display: inline-block;
+  flex: right;
+  word-wrap: break-word;
+  padding-right: 5px;
 }
