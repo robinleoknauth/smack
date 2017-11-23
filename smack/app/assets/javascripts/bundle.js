@@ -29412,7 +29412,7 @@ exports.default = function (_ref) {
 
   var display = currentUser ? _react2.default.createElement(
     'div',
-    null,
+    { className: 'navbar' },
     _react2.default.createElement(
       'p',
       { className: 'welcome-message' },
@@ -29426,7 +29426,7 @@ exports.default = function (_ref) {
     )
   ) : _react2.default.createElement(
     'div',
-    null,
+    { className: 'navbar' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { className: 'button', to: '/signup' },
