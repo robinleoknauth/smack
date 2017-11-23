@@ -107,7 +107,7 @@ input[type="submit"] {
 .login-form h1 {
   font-size: 2rem;
   line-height: 2.5rem;
-  letter-spacing: -1px
+  letter-spacing: -1px;
   -webkit-margin-before: 0.67em;
   -webkit-margin-after: 0.67em;
   -webkit-margin-start: 0px;
