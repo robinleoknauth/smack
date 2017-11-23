@@ -18,6 +18,3 @@ class Api::SessionsController < ApplicationController
     render json:  {}   #["Nobody logged in"]
   end
 end
-
-
-# comment

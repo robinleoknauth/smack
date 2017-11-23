@@ -37,6 +37,7 @@ class SessionForm extends React.Component {
       return <Link to="/login">log in</Link>;
     }
   }
+
   //
   // renderErrors() {
   //   return(
@@ -51,10 +52,10 @@ class SessionForm extends React.Component {
   // }
 
   render() {
-    console.log(this.props);
+
     return (
-      <div className="login-form-container">
-        
+      <div className="login-form-base">
+
         <form onSubmit={this.handleSubmit} className="login-form-box">
           Welcome to !SMACK!
           <br/>
@@ -80,7 +81,7 @@ class SessionForm extends React.Component {
               />
             </label>
             <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" className='login-button' />
           </div>
         </form>
 

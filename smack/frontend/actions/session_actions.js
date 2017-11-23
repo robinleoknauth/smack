@@ -14,7 +14,8 @@ const receiveCurrentUser = user => ({
 })
 
 const logoutCurrentUser = () => ({
-  type: LOGOUT_CURRENT_USER
+  type: LOGOUT_CURRENT_USER,
+  // null
 })
 
 export const signup = formUser => dispatch => postUser(formUser)
