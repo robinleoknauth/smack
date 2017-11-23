@@ -29178,15 +29178,34 @@ var SessionForm = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit, className: 'login-form-box' },
-          'Welcome to !SMACK!',
           _react2.default.createElement('br', null),
-          this.props.formType,
-          ' or ',
-          this.navigationLink(),
           _react2.default.createElement(
             'div',
             { className: 'login-form' },
-            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Welcome to !SMACK!'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              ' Enter your username and password please. '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              ' This is the  ',
+              this.props.formType,
+              ' page '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '   Not yet registered? Go to ',
+              this.navigationLink(),
+              ' '
+            ),
             _react2.default.createElement(
               'label',
               null,
@@ -29198,7 +29217,6 @@ var SessionForm = function (_React$Component) {
                 className: 'login-input'
               })
             ),
-            _react2.default.createElement('br', null),
             _react2.default.createElement(
               'label',
               null,
