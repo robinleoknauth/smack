@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div>
         <Route path='/' component={NavBarContainer} />
-        <Route path='/' component={LoginGuestContainer} />
+        {/* <Route path='/' component={LoginGuestContainer} /> */}
         <AuthRoute path='/login' component={SessionFormContainer} />
         <AuthRoute path='/signup' component={SessionFormContainer} />
     </div>
