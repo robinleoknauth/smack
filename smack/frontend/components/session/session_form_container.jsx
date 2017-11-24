@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { login, logout, signup } from '../../actions/session_actions';
 import SessionForm from './session_form';
 
+const demoUser={ user: { username:"Guest", password:"123456" } };
 
 const mapStateToProps = (state) => {
 
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
   const processForm = (formType === 'login') ? login : signup;
   return {
     processForm: user => dispatch(processForm(user)),
+    loginGuest: () => dispatch(login(demoUser)),
     formType
   };
 };

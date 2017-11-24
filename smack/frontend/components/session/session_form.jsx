@@ -1,4 +1,4 @@
-
+// import LoginGuestContainer from '.guestlogin_container';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -10,6 +10,7 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLoginGuest = this.handleLoginGuest.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,6 +31,18 @@ class SessionForm extends React.Component {
     this.props.processForm({user});
   }
 
+  // handleLoginGuest() {
+  //   this.props.login({
+  //       username: `guest`,
+  //       password: '123456'});
+  // }
+
+  handleLoginGuest(e){
+        e.preventDefault();
+        this.props.loginGuest();
+        // this.props.history.push('/');
+    }
+
   navigationLink() {
     if (this.props.formType === 'login') {
       return <Link className='login-link' to="/signup">sign up</Link>;
@@ -37,7 +50,6 @@ class SessionForm extends React.Component {
       return <Link className='login-link' to="/login">log in</Link>;
     }
   }
-
 
 
   //
@@ -86,6 +98,8 @@ class SessionForm extends React.Component {
             </label>
             <br/>
             <input type="submit" value="Continue &#x2192;" className='login-button' />
+            <button className='login-button-guest'  onClick={this.handleLoginGuest}>Guest Login
+            </button>
           </div>
         </form>
 

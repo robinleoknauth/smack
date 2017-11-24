@@ -29009,6 +29009,10 @@ var _navbar_container = __webpack_require__(280);
 
 var _navbar_container2 = _interopRequireDefault(_navbar_container);
 
+var _guestlogin_container = __webpack_require__(283);
+
+var _guestlogin_container2 = _interopRequireDefault(_guestlogin_container);
+
 var _route_util = __webpack_require__(279);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29019,6 +29023,7 @@ var App = function App() {
     'div',
     null,
     _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _navbar_container2.default }),
+    _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _guestlogin_container2.default }),
     _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
     _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default })
   );
@@ -29050,6 +29055,8 @@ var _session_form2 = _interopRequireDefault(_session_form);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var demoUser = { user: { username: "Guest", password: "123456" } };
+
 var mapStateToProps = function mapStateToProps(state) {
 
   return {
@@ -29067,6 +29074,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
   return {
     processForm: function processForm(user) {
       return dispatch(_processForm(user));
+    },
+    loginGuest: function loginGuest() {
+      return dispatch((0, _session_actions.login)(demoUser));
     },
     formType: formType
   };
@@ -29101,7 +29111,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // import LoginGuestContainer from '.guestlogin_container';
+
 
 var SessionForm = function (_React$Component) {
   _inherits(SessionForm, _React$Component);
@@ -29116,6 +29127,7 @@ var SessionForm = function (_React$Component) {
       password: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleLoginGuest = _this.handleLoginGuest.bind(_this);
     return _this;
   }
 
@@ -29141,6 +29153,20 @@ var SessionForm = function (_React$Component) {
       e.preventDefault();
       var user = this.state;
       this.props.processForm({ user: user });
+    }
+
+    // handleLoginGuest() {
+    //   this.props.login({
+    //       username: `guest`,
+    //       password: '123456'});
+    // }
+
+  }, {
+    key: 'handleLoginGuest',
+    value: function handleLoginGuest(e) {
+      e.preventDefault();
+      this.props.loginGuest();
+      // this.props.history.push('/');
     }
   }, {
     key: 'navigationLink',
@@ -29234,7 +29260,12 @@ var SessionForm = function (_React$Component) {
               })
             ),
             _react2.default.createElement('br', null),
-            _react2.default.createElement('input', { type: 'submit', value: 'Continue \u2192', className: 'login-button' })
+            _react2.default.createElement('input', { type: 'submit', value: 'Continue \u2192', className: 'login-button' }),
+            _react2.default.createElement(
+              'button',
+              { className: 'login-button-guest', onClick: this.handleLoginGuest },
+              'Guest Login'
+            )
           )
         )
       );
@@ -29453,6 +29484,78 @@ exports.default = function (_ref) {
       display
     )
   );
+};
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _guestlogin = __webpack_require__(284);
+
+var _guestlogin2 = _interopRequireDefault(_guestlogin);
+
+var _reactRedux = __webpack_require__(62);
+
+var _session_actions = __webpack_require__(61);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    login: function login(formUser) {
+      return dispatch((0, _session_actions.login)(formUser));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_guestlogin2.default);
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(38);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+  var currentUser = _ref.currentUser,
+      login = _ref.login;
+
+  var guestLogin = function guestLogin() {
+    return login({
+      username: 'guest', password: '123456'
+    });
+  };
+  if (!currentUser) {
+    return _react2.default.createElement(
+      'div',
+      null,
+      _react2.default.createElement(
+        'a',
+        { className: 'login-button-guest', onClick: guestLogin },
+        'Guest Login'
+      )
+    );
+  }
 };
 
 /***/ })
