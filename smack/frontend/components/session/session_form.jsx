@@ -11,12 +11,18 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLoginGuest = this.handleLoginGuest.bind(this);
+
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
       this.props.history.push('/');
     }
+  }
+
+  componentWillUnmount(){
+    this.props.clearErrors();
   }
 
   update(field) {
@@ -53,23 +59,24 @@ class SessionForm extends React.Component {
 
 
   //
-  // renderErrors() {
-  //   return(
-  //     <ul>
-  //       {this.props.errors.map((error, i) => (
-  //         <li key={`error-${i}`}>
-  //           {error}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  renderErrors() {
+    return(
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   render() {
 
     return (
       <div className="login-form-base">
 
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
 
@@ -102,7 +109,6 @@ class SessionForm extends React.Component {
             </button>
           </div>
         </form>
-
       </div>
     );
   }
